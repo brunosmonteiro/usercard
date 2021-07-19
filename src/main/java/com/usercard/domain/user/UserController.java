@@ -12,6 +12,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.stream.Collectors;
 
 @RestController
@@ -33,12 +34,12 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Long create(UserDto request) {
+    public Long create(@Valid @RequestBody UserDto request) {
         return userService.create(userMapper.toEntity(request));
     }
 
     @PutMapping("/{id}")
-    public UserDto update(@PathVariable("id") Long id, @RequestBody UserDto request) {
+    public UserDto update(@PathVariable("id") Long id, @Valid @RequestBody UserDto request) {
         request.setId(id);
         return userMapper.toDto(userService.update(userMapper.toEntity(request)));
     }
@@ -50,7 +51,7 @@ public class UserController {
 
     @PostMapping("/{id}/cards")
     @ResponseStatus(HttpStatus.CREATED)
-    public Long createUserCard(@PathVariable("id") Long userId, @RequestBody CardDto request) {
+    public Long createUserCard(@PathVariable("id") Long userId, @Valid @RequestBody CardDto request) {
         request.setOwner(userId);
         return cardService.create(cardMapper.toEntity(request));
     }
@@ -60,7 +61,7 @@ public class UserController {
     public CardDto updateUserCard(
         @PathVariable("userId") Long userId,
         @PathVariable("cardId") Long cardId,
-        @RequestBody CardDto request
+        @Valid @RequestBody CardDto request
     ) {
         request.setOwner(userId);
         request.setId(cardId);

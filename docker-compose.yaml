@@ -1,0 +1,18 @@
+version: '3.9'
+
+volumes:
+  usercard-db-data:
+
+services:
+  usercard-db:
+    container_name: usercard-db
+    image: mdillon/postgis:11-alpine
+    restart: always
+    ports:
+    - "5432:5432"
+    environment:
+      POSTGRES_DB: usercard
+      POSTGRES_USER: usercard
+      POSTGRES_PASSWORD: usercard
+    volumes:
+    - usercard-db-data:/var/lib/postgresql/data

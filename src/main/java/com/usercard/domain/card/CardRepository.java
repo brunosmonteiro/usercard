@@ -1,6 +1,8 @@
 package com.usercard.domain.card;
 
 import com.usercard.bases.BaseRepository;
+import org.springframework.stereotype.Repository;
 
-interface CardRepository extends BaseRepository<Card> {
+@Repository
+public interface CardRepository extends BaseRepository<Card> {
 }

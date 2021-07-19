@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Table
+@Entity
 @Getter
 @Setter
 public class Card extends BaseEntity {

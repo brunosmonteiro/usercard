@@ -5,9 +5,11 @@ import com.usercard.domain.card.Card;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
 
+@Entity(name = "tb_user")
 @Getter
 @Setter
 public class User extends BaseEntity {
