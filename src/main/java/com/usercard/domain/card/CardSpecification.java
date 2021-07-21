@@ -19,7 +19,7 @@ public class CardSpecification {
             if (owner != null) {
                 predicates.add(criteriaBuilder.equal(root.get("owner"), owner));
             }
-            return criteriaBuilder.and((Predicate[]) predicates.toArray());
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }
 }

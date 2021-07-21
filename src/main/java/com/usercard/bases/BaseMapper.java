@@ -30,11 +30,14 @@ public abstract class BaseMapper<Dto extends BaseDto, Entity extends BaseEntity>
     @ObjectFactory
     @SneakyThrows
     public Entity findEntity(Dto dto, @TargetType Class<Entity> clazz) {
-        Entity loaded = em.find(clazz, dto.getId());
-        if (loaded == null) {
-            return clazz.getDeclaredConstructor().newInstance();
+        if (dto.getId() != null) {
+            Entity loaded = em.find(clazz, dto.getId());
+            if (loaded == null) {
+                return clazz.getDeclaredConstructor().newInstance();
+            }
+            return loaded;
         }
-        return loaded;
+        return clazz.getDeclaredConstructor().newInstance();
     }
 
     @ObjectFactory

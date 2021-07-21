@@ -16,3 +16,9 @@ services:
       POSTGRES_PASSWORD: usercard
     volumes:
     - usercard-db-data:/var/lib/postgresql/data
+  usercard-api:
+    container_name: usercard-api
+    image: usercard:beta
+    restart: always
+    ports:
+    - "9999:9999"

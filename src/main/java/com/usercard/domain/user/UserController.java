@@ -28,7 +28,7 @@ public class UserController {
     private CardService cardService;
 
     @GetMapping("/{id}")
-    public UserDto get(@PathVariable("/{id}") Long id) {
+    public UserDto get(@PathVariable("id") Long id) {
         return userMapper.toDto(userService.get(id));
     }
 
@@ -68,12 +68,12 @@ public class UserController {
         return cardMapper.toDto(cardService.update(cardMapper.toEntity(request)));
     }
 
-    @GetMapping("/{userId}/card/{cardId}")
-    public CardDto getUserCard(@PathVariable("/{id}") Long id) {
-        return cardMapper.toDto(cardService.get(id));
+    @GetMapping("/{userId}/cards/{cardId}")
+    public CardDto getUserCard(@PathVariable("userId") Long userId, @PathVariable("cardId") Long cardId) {
+        return cardMapper.toDto(cardService.get(cardId));
     }
 
-    @DeleteMapping("/{userId}/card/{cardId}")
+    @DeleteMapping("/{userId}/cards/{cardId}")
     public void deleteUserCard(@PathVariable("userId") Long userId, @PathVariable("cardId") Long cardId) {
         cardService.delete(cardId);
     }
