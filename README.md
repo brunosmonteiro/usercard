@@ -21,8 +21,6 @@ The BaseMapper class automatically loads any entity based on the Dto object's id
 
 The use of base classes was to avoid duplicate code between user and card entities in the CRUD operations. By doing so, both these entities and any other eventual one with CRUD operations must only extend these classes with no necessity to code unless it has specific rules.
 
-Two types of tests were created, unit tests testing single classes and methods, and integration/e2e tests, going from controller to (mocked) databases.
-
 ### Running the project
 The bash script ./init.sh can be executed to deploy the application on localhost, port 9999. It will:
 1. Execute 'mvn clean install' on the base of the project;
